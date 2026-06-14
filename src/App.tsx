@@ -4,6 +4,9 @@ import { Layout } from './components/Layout';
 import { LandingPage } from './components/LandingPage';
 import { SignUp } from './components/SignUp';
 import { UnlockPage } from './components/UnlockPage';
+import { WizardStep1 } from './components/WizardStep1';
+import { WizardStep2 } from './components/WizardStep2';
+import { WizardStep3 } from './components/WizardStep3';
 
 const AppContent: React.FC = () => {
   const { currentStep, setCurrentStep, user, isPaid } = useTax();
@@ -24,25 +27,27 @@ const AppContent: React.FC = () => {
       ) : currentStep === 0 ? (
         <LandingPage />
       ) : (
-        <div className="flex-grow flex items-center justify-center py-20 px-4">
-          <div className="max-w-md w-full bg-white border border-slate-200 rounded-2xl p-8 shadow-premium text-center space-y-6">
-            <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto border border-blue-100">
-              <span className="font-bold text-2xl font-outfit">?</span>
-            </div>
-            <h2 className="text-2xl font-outfit font-bold text-slate-800">
-              Wizard Step {currentStep} Placeholder
-            </h2>
-            <p className="text-sm text-slate-500 leading-relaxed">
-              You've started the tax check! In Phase 3, this area will display the interactive 8-step wizard questions.
-            </p>
-            <button
-              onClick={() => setCurrentStep(0)}
-              className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-all-custom font-outfit"
-            >
-              ← Back to Landing Page
-            </button>
-          </div>
-        </div>
+        <>
+            {/* Wizard Steps */}
+            {currentStep === 1 && <WizardStep1 />}
+            {currentStep === 2 && <WizardStep2 />}
+            {currentStep === 3 && <WizardStep3 />}
+            {currentStep > 3 && (
+              <div className="flex-grow flex items-center justify-center py-20 px-4">
+                <div className="max-w-md w-full bg-white border border-slate-200 rounded-2xl p-8 shadow-premium text-center space-y-6">
+                  <h2 className="text-2xl font-outfit font-bold text-slate-800">
+                    Thank you! Your inputs are saved.
+                  </h2>
+                  <button
+                    onClick={() => setCurrentStep(0)}
+                    className="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-all-custom font-outfit"
+                  >
+                    ← Back to Landing Page
+                  </button>
+                </div>
+              </div>
+            )}
+        </>
       )}
     </Layout>
   );
