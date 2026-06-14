@@ -107,14 +107,12 @@ export const LandingPage: React.FC = () => {
                   </button>
                 ) : !isPaid ? (
                   <>
-                    <a
-                      href="https://superprofile.bio/vp/tax-calculator-app"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={() => window.open('https://superprofile.bio/vp/tax-calculator-app', '_blank', 'noopener,noreferrer')}
                       className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center font-outfit cursor-pointer flex items-center justify-center gap-2"
                     >
                       Unlock Tax Calculator
-                    </a>
+                    </button>
                     <button
                       onClick={() => setCurrentStep(-2)}
                       className="w-full sm:w-auto px-6 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-all duration-200 text-center font-outfit cursor-pointer"
